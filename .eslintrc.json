@@ -4,7 +4,7 @@
     "project": "tsconfig.json",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "plugins": ["@typescript-eslint/eslint-plugin", "simple-import-sort"],
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "prettier",
@@ -16,6 +16,8 @@
     "jest": true
   },
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
   }
 }

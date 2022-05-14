@@ -20,9 +20,8 @@
     "type": "git",
     "url": "git+git@github.com:androlabs/planning-poker-backend.git.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "gabriel-roque",
+  "license": "MIT",
   "bugs": {
     "url": "git@github.com:androlabs/planning-poker-backend.git/issues"
   },
@@ -43,6 +42,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^5.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "jest-mock": "^27.5.1",
