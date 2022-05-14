@@ -4,17 +4,13 @@ const { compilerOptions } = require('./tsconfig.json');
 module.exports = {
   collectCoverage: true,
 
-  collectCoverageFrom: [
-    '<rootDir>/src/**/*.ts',
-    '!<rootDir>/src/main/**',
-    '!<rootDir>/src/**/index.ts',
-  ],
+  collectCoverageFrom: ['<rootDir>/src/**/*.ts', '!<rootDir>/src/main/**'],
 
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/src/',
   }),
 
-  coverageDirectory: '__tests__/coverage',
+  coverageDirectory: 'coverage',
 
   coverageProvider: 'v8',
 

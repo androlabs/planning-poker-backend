@@ -14,5 +14,8 @@
   "env": {
     "node": true,
     "jest": true
+  },
+  "rules": {
+    "prettier/prettier": "error"
   }
 }
