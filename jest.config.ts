@@ -25,5 +25,5 @@ module.exports = {
 
   testMatch: ['**/*.spec.ts'],
 
-  // setupFiles: ['./jest-setup-file.ts', './jest-set-env-vars.ts'],
+  setupFiles: ['./jest-setup-file.ts', './jest-set-env-vars.ts'],
 };

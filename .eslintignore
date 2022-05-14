@@ -2,3 +2,5 @@ node_modules
 dist
 __tests__
 jest.config.ts
+jest-setup-file.ts
+jest-set-env-vars.ts

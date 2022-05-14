@@ -6,14 +6,13 @@
   "scripts": {
     "prestart": "npm run build",
     "start": "node dist",
-    "dev": "ts-node-dev -r nodemon -r tsconfig-paths/register src/main/index.ts",
+    "dev": "nodemon src/main/index.ts",
     "build": "rimraf dist && tsc -p tsconfig.json",
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "npm run test -- --watch",
-    "test:staged": "npm run test -- --findRelatedTests",
     "test:coverage": "npm run test -- --coverage",
     "prepare": "husky install"
   },
