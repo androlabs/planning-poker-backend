@@ -4,7 +4,7 @@ import express from 'express';
 
 const app = express();
 
-setupMiddlewares(app);
 mappingRoutes(app);
+setupMiddlewares(app);
 
 export { app };

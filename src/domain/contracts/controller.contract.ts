@@ -1,5 +1,5 @@
-import { HttpResponse } from '@main/interfaces';
+import { Http } from '@main/interfaces';
 
 export interface ControllerContract {
-  handle(request: unknown): Promise<HttpResponse>;
+  handle(request: Http.Request): Promise<Http.Response>;
 }

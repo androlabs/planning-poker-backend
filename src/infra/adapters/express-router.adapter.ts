@@ -9,7 +9,13 @@ export const expressRouterAdapter = {
     next: NextFunction,
   ): Promise<Response | unknown> => {
     try {
-      const response = await controller.handle(req);
+      const response = await controller.handle({
+        body: req.body,
+        path: req.path,
+        headers: req.headers,
+        params: req.params,
+        query: req.query,
+      });
       return res.status(response.statusCode).json(response.data);
     } catch (err) {
       return next(err);
