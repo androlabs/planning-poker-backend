@@ -6,15 +6,14 @@ class ExampleGetController implements ControllerContract {
 
   async handle(request: Http.Request): Promise<Http.Response> {
     // TODO Invoke use case get example here
-    console.log(request);
-    if (true) {
-      throw new Error('any_error');
-    }
-    // return {
-    //   statusCode: 200,
-    //   data: {
-    //     any: 'value',
-    //   },
+    console.log('CONTROLLER');
+    // if (true) {
+    //   throw new Error('any_error');
+    // }
+    return {
+      statusCode: 200,
+      data: { any: 'value' },
+    };
   }
 }
 

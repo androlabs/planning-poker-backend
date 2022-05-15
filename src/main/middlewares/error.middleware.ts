@@ -9,6 +9,7 @@ export class ErrorMiddleware {
     response: Response,
     _: NextFunction,
   ): Response {
+    console.log('GLOBAL MIDDLEWARE ERROR');
     // TODO add Custom Error
     // if (error instanceof AppError) {
     //   return response.status(error.statusCode).json({

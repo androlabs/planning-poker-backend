@@ -1,2 +1,2 @@
 export * from './http.interfaces';
-export * from './router-resource.interface';
+export * from './resource.interface';
