@@ -29,14 +29,10 @@ export namespace Http {
     SERVER_ERROR = 500,
   }
 
-  export enum Category {
-    error = 'ERROR',
-  }
-
   export type Error = {
     message: string;
-    category: Category;
-    messages: string[] | Record<string, unknown>;
-    status: StatusCode;
+    category: string;
+    messages?: Record<string, unknown>;
+    status?: StatusCode;
   };
 }

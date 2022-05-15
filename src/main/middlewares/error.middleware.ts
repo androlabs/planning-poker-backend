@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { AppError } from '@application/middlewares/errors';
+import { logger } from '@main/config/logger';
 import { Http } from '@main/interfaces';
 import { NextFunction, Request, Response } from 'express';
 
@@ -9,18 +11,16 @@ export class ErrorMiddleware {
     response: Response,
     _: NextFunction,
   ): Response {
-    console.log('GLOBAL MIDDLEWARE ERROR');
-    // TODO add Custom Error
-    // if (error instanceof AppError) {
-    //   return response.status(error.statusCode).json({
-    //     status: 'error',
-    //     message: error.message,
-    //     category: error.category,
-    //     messages: error.messages,
-    //   });
-    // }
+    if (error instanceof AppError) {
+      return response.status(error.status).json({
+        status: 'error',
+        message: error.message,
+        category: error.category,
+        messages: error.messages,
+      });
+    }
 
-    // logger('SERVICE_ERROR: ', error);
+    logger.error('SERVICE_ERROR: ', error);
 
     return response.status(Http.StatusCode.SERVER_ERROR).json({
       status: 'error',

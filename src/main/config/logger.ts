@@ -1,3 +1,4 @@
+import { LoggerContract } from '@domain/contracts';
 import winston from 'winston';
 
 const config = {
@@ -19,14 +20,11 @@ const config = {
   },
 };
 
-const silent = process.env.DEBUG_SILENT === 'true';
-
 const loggerPrint = winston.createLogger({
   level: process.env.DEBUG_LEVEL || 'info',
   levels: config.levels,
   transports: [
     new winston.transports.Console({
-      silent,
       format: winston.format.combine(
         winston.format.colorize(),
         winston.format.simple(),
@@ -41,7 +39,7 @@ const loggerPrint = winston.createLogger({
 
 winston.addColors(config.colors);
 
-const logger = (...args: unknown[]): void => {
+const loggerWinston = (...args: unknown[]): void => {
   const parseArgs = args.map((arg) => {
     try {
       return JSON.stringify(arg);
@@ -52,4 +50,13 @@ const logger = (...args: unknown[]): void => {
   loggerPrint.info(parseArgs);
 };
 
-export { logger };
+export class Logger implements LoggerContract {
+  info(message: string): void {
+    loggerWinston(message);
+  }
+  error(message: string, stack: unknown): void {
+    loggerWinston(message, stack);
+  }
+}
+
+export const logger = new Logger();

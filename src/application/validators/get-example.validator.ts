@@ -1,3 +1,4 @@
+import { AppError } from '@application/middlewares/errors';
 import { ValidatorContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 import * as Yup from 'yup';
@@ -15,13 +16,12 @@ export class GetExampleValidator implements ValidatorContract {
       });
 
       if (!request.query.limit) request.query.limit = '50';
-    } catch (err: any) {
-      throw new Error('VALIDATION ERROR');
-      // throw new AppError({
-      //   message: 'Validation failed',
-      //   category: 'GET_EMPLOYEES_BY_COMPANY_VALIDATION_FAILURE',
-      //   messages: err.inner,
-      // });
+    } catch {
+      throw new AppError({
+        message: 'Validation failed',
+        category: 'GET_EXAMPLE_FAILURE',
+        status: 400,
+      });
     }
   }
 }
