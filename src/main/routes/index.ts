@@ -6,9 +6,9 @@ export const mappingRoutes = (app: Express): void => {
   const resources: ResourceMapper[] = [...routesExample];
   const router = Router();
 
-  resources.forEach((resource) => {
-    // TODO Adding logger map route
+  console.table(resources, ['method', 'endPoint']);
 
+  resources.forEach((resource) => {
     router[`${resource.method}`](resource.endPoint, (req, res, next) => {
       expressAdapter.adapt(resource, req, res, next);
     });

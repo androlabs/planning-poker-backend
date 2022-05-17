@@ -16,14 +16,4 @@ const routesExample: ResourceMapper[] = [
   },
 ];
 
-// const routesExample = Router();
-
-// MAPPER_RESOURCES.forEach((resource) => {
-//   // TODO Adding logger map route
-
-//   routesExample[`${resource.method}`](resource.endPoint, (req, res, next) => {
-//     expressAdapter.adapt(resource, req, res, next);
-//   });
-// });
-
 export { routesExample };
