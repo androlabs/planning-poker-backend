@@ -20,7 +20,7 @@ export class ErrorMiddleware {
       });
     }
 
-    logger.error('SERVICE_ERROR: ', error);
+    logger.error('SERVICE_ERROR:', error);
 
     return response.status(Http.StatusCode.SERVER_ERROR).json({
       status: 'error',

@@ -1,4 +1,7 @@
+import 'colors';
+
 import { LoggerContract } from '@domain/contracts';
+import dayjs from 'dayjs';
 import winston from 'winston';
 
 const loggerPrint = winston.createLogger({
@@ -8,7 +11,10 @@ const loggerPrint = winston.createLogger({
         winston.format.colorize(),
         winston.format.simple(),
         winston.format.printf((info: winston.Logform.TransformableInfo) => {
-          return `[${info.level}] :${info.message}`;
+          const level = `[${info.level}] | `;
+          const date = `[${dayjs().format('DD-MM-YY HH:mm:ss')}]`.blue + ` | `;
+          const message = `${info.message}`.cyan;
+          return [level, date, message].join('');
         }),
       ),
     }),
