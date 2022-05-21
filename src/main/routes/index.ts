@@ -1,9 +1,9 @@
 import { expressAdapter } from '@infra/adapters';
 import { ResourceMapper } from '@main/interfaces';
-import { routesSession } from '@main/routes/session.routes';
+import { routesTeams } from '@main/routes/team.routes';
 import { Express, Router } from 'express';
 export const mappingRoutes = (app: Express): void => {
-  const resources: ResourceMapper[] = [...routesSession];
+  const resources: ResourceMapper[] = [...routesTeams];
   const router = Router();
 
   // eslint-disable-next-line no-console

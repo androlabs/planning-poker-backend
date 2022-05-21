@@ -1,1 +1,1 @@
-export * from './session.schema';
+export * from './team.schema';

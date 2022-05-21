@@ -7,7 +7,7 @@ export const queryParams = Yup.object().shape({
   name: Yup.string().required(),
 });
 
-export class CreateSessionValidator implements ValidatorContract {
+export class CreateTeamValidator implements ValidatorContract {
   async handle(request: Http.Request): Promise<void | Error> {
     try {
       await queryParams.validate(request.body, {
@@ -16,11 +16,11 @@ export class CreateSessionValidator implements ValidatorContract {
     } catch {
       throw new AppError({
         message: 'Validation failed',
-        category: 'FAILED_IN_VALIDATION_CREATE_SESSION',
+        category: 'FAILED_IN_VALIDATION_CREATE_TEAM',
         status: 400,
       });
     }
   }
 }
 
-export const createSessionValidator = new CreateSessionValidator();
+export const createTeamValidator = new CreateTeamValidator();

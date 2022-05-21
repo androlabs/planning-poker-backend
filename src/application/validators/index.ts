@@ -1,1 +1,1 @@
-export * from './create-session.validator';
+export * from './create-team.validator';
