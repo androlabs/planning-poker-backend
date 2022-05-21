@@ -12,7 +12,8 @@ export class SessionRepository implements RepositoryContract<Session> {
   }
 
   async create(data: Session): Promise<Session> {
-    return await this.databaseAdapter.create(data);
+    const session = await this.databaseAdapter.create(data);
+    return { id: session.id, name: session.name };
   }
 
   get(id: string | number): Promise<Session> {

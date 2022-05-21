@@ -1,9 +1,9 @@
 import { expressAdapter } from '@infra/adapters';
 import { ResourceMapper } from '@main/interfaces';
-import { routesExample } from '@main/routes/example.routes';
+import { routesSession } from '@main/routes/session.routes';
 import { Express, Router } from 'express';
 export const mappingRoutes = (app: Express): void => {
-  const resources: ResourceMapper[] = [...routesExample];
+  const resources: ResourceMapper[] = [...routesSession];
   const router = Router();
 
   console.table(resources, ['method', 'endPoint']);

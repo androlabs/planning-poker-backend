@@ -1,7 +1,7 @@
 export namespace Http {
   export type Request = {
-    body: Record<string, unknown>;
-    params: Record<string, unknown>;
+    body: Record<string, string>;
+    params: Record<string, string>;
     query: Record<string, unknown>;
     headers: Record<string, unknown>;
     path: unknown;

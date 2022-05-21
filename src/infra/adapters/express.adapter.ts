@@ -27,11 +27,8 @@ export class ExpressAdapter {
 
       const response = await resource.controller.handle(request);
 
-      console.log('ADAPTER CONTROLLER');
       return res.status(response.statusCode).json(response.data);
     } catch (err) {
-      console.log('CATCH Error');
-      console.log(err);
       next(err);
     }
   }

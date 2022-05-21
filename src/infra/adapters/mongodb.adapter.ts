@@ -12,8 +12,9 @@ export class MongodbAdapter<T> {
   }
 
   private async openConnect(): Promise<void> {
-    await connect(`mongodb://${env.database.host}:27017/panning-poker`, {
-      auth: { username: env.database.user, password: env.database.password },
+    const { host, password, user } = env.database;
+    await connect(`mongodb://${user}:${password}@${host}:27017`, {
+      dbName: 'planning-poker',
     });
     logger.info('Connection MongoDB opened');
   }
