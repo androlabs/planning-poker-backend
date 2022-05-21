@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=poker-admin
+      - MONGO_INITDB_ROOT_PASSWORD=poker-password

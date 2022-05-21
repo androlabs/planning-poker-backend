@@ -5,4 +5,6 @@ import { env } from '@main/config/env';
 import { logger } from '@main/config/logger';
 import { server } from '@main/config/server';
 
-server.listen(env.port, () => logger.info(`🔥 Server Listen in: ${env.port}`));
+server.listen(env.app.port, () =>
+  logger.info(`🔥 Server Listen in: ${env.app.port}`),
+);
