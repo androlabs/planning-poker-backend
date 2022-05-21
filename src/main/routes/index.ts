@@ -6,6 +6,7 @@ export const mappingRoutes = (app: Express): void => {
   const resources: ResourceMapper[] = [...routesSession];
   const router = Router();
 
+  // eslint-disable-next-line no-console
   console.table(resources, ['method', 'endPoint']);
 
   resources.forEach((resource) => {
