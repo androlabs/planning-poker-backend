@@ -3,24 +3,24 @@ import { ValidatorContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 import * as Yup from 'yup';
 
-export const body = Yup.object().shape({
-  name: Yup.string().required(),
+export const params = Yup.object().shape({
+  team_id: Yup.string().required(),
 });
 
-export class CreateTeamValidator implements ValidatorContract {
+export class GetTeamValidator implements ValidatorContract {
   async handle(request: Http.Request): Promise<void | Error> {
     try {
-      await body.validate(request.body, {
+      await params.validate(request.params, {
         abortEarly: false,
       });
     } catch {
       throw new AppError({
         message: 'Validation failed',
-        category: 'FAILED_IN_VALIDATION_CREATE_TEAM',
+        category: 'FAILED_IN_VALIDATION_GET_TEAM',
         status: 400,
       });
     }
   }
 }
 
-export const createTeamValidator = new CreateTeamValidator();
+export const getTeamValidator = new GetTeamValidator();

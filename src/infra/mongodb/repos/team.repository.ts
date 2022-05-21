@@ -4,7 +4,7 @@ import { MongodbAdapter } from '@infra/adapters';
 import { teamSchema } from '@infra/mongodb/schemas';
 
 export class TeamRepository implements RepositoryContract<Team> {
-  public static tableName = 'Team';
+  public static tableName = 'team';
   private readonly databaseAdapter: MongodbAdapter<Team>;
 
   constructor(databaseAdapter: MongodbAdapter<Team>) {
@@ -16,15 +16,20 @@ export class TeamRepository implements RepositoryContract<Team> {
     return { id: team.id, name: team.name };
   }
 
-  get(id: string | number): Promise<Team> {
+  async get(id: string): Promise<Team> {
+    const team = await this.databaseAdapter.get(id);
+    return { id: team.id, name: team.name };
+  }
+
+  async list(id: string): Promise<Team[]> {
     throw new Error('Method not implemented.');
   }
 
-  update(data: Team): Promise<Team> {
+  async update(data: Team): Promise<Team> {
     throw new Error('Method not implemented.');
   }
 
-  delete(id: string | number): Promise<boolean> {
+  async delete(id: string): Promise<boolean> {
     throw new Error('Method not implemented.');
   }
 }

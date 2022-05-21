@@ -1,6 +1,6 @@
 import { env } from '@main/config/env';
 import { logger } from '@main/config/logger';
-import { connect, disconnect, model, Schema } from 'mongoose';
+import { connect, disconnect, Model, model, Schema } from 'mongoose';
 
 export class MongodbAdapter<T> {
   private schema: Schema<T>;
@@ -24,15 +24,30 @@ export class MongodbAdapter<T> {
     logger.info('Connection MongoDB closed');
   }
 
+  private getInstance(): Model<T> {
+    return model<T>(this.tableName, this.schema);
+  }
+
   async create(data: T): Promise<T> {
     await this.openConnect();
 
-    const Document = model<T>(this.tableName, this.schema);
+    const Document = this.getInstance();
     const document = new Document(data);
     await document.save();
 
     await this.closeConnection();
 
     return document;
+  }
+
+  async get(id: string | number): Promise<T> {
+    await this.openConnect();
+
+    const Document = this.getInstance();
+    const document = await Document.findOne({ id }).exec();
+
+    await this.closeConnection();
+
+    return document as T;
   }
 }

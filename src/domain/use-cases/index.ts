@@ -1,1 +1,1 @@
-export * from './create-team.usecase';
+export * from './team.usecase';

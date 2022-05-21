@@ -6,7 +6,7 @@ import {
 import { ControllerContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 
-class TeamCreateController implements ControllerContract {
+class CreateTeamController implements ControllerContract {
   constructor(private readonly createTeamService: CreateTeamService) {}
 
   async handle(request: Http.Request): Promise<Http.Response> {
@@ -30,6 +30,6 @@ class TeamCreateController implements ControllerContract {
   }
 }
 
-export const makeTeamCreateController = (): TeamCreateController => {
-  return new TeamCreateController(makeCreateTeamService());
+export const makeCreateTeamController = (): CreateTeamController => {
+  return new CreateTeamController(makeCreateTeamService());
 };
