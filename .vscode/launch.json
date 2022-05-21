@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run Debug",
+      "restart": true,
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/dist/main/index.js"
+    }
+  ]
+}
