@@ -2,36 +2,53 @@
 
 ## Requirements
 
-- Exists a session
-- Exists a peoples
-- Exists a owner of session
-- A session can grouper a or more peoples
-- In session exists a owner session
-- A owner can be invite more peoples for own session
+- Exists a Team
+- Exists a Users
+- Exists a Sprints
+- Exists a Topic
+- Exists one or more owner of Team
+- A Team can grouper a or more users
+- A owner can be invite more users for own Team
 - A topic is any generic for vote
-- Peoples can be votes in topics
+- Users can be votes in topics
 
 ## Entities
 
-### Session
+### Team
 
 - id
 - name
 
-### People
+### User
 
 - id
 - name
+- email
+- password
 
-### Session-People
+### Sprint
 
-- session_id
-- people_id
+- id
+- name
+- date_init
+- date_end
+
+## Topic
+
+- id
+- name
+- description
+- point
+
+### Team-User
+
+- team_id
+- user_id
 - is_owner
 
-### Session-Invites
+### Team-Invites
 
-- session_id
+- team_id
 - who_invite
 - expires
 - secret_invite
