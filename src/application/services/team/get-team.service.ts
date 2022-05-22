@@ -1,10 +1,9 @@
-import { RepositoryContract } from '@domain/contracts';
 import { Team } from '@domain/models';
 import { GetTeamUseCase } from '@domain/use-cases';
-import { makeTeamRepository } from '@infra/mongodb/repos';
+import { makeTeamRepository, TeamRepository } from '@infra/mongodb/repos';
 
 export class GetTeamService implements GetTeamUseCase {
-  constructor(private readonly teamRepository: RepositoryContract<Team>) {}
+  constructor(private readonly teamRepository: TeamRepository) {}
 
   async perform(id: string): Promise<Team> {
     return await this.teamRepository.get(id);
