@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface RepositoryContract<T> {
-  create(data: T): Promise<T>;
-  get(id: string | number): Promise<T>;
-  list(id: string | number): Promise<T[]>;
-  update(data: T): Promise<T>;
-  delete(id: string | number): Promise<boolean>;
+  create?: (data: T) => Promise<T>;
+  get?: (id: string | number) => Promise<T>;
+  list?: (filter?: any) => Promise<T[]>;
+  update?: (data: T, filter?: any) => Promise<T>;
+  delete?: (id: string | number, filter: any) => Promise<boolean>;
 }

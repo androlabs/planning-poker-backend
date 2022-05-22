@@ -1,5 +1,10 @@
 export namespace Http {
   export type Request = {
+    user: {
+      id: string;
+      name: string;
+      email: string;
+    };
     body: Record<string, string>;
     params: Record<string, string>;
     query: Record<string, unknown>;

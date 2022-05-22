@@ -1,6 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { env } from '@main/config/env';
 import { logger } from '@main/config/logger';
 import { connect, disconnect, Model, model, Schema } from 'mongoose';
+
+type ParamsList = {
+  filter?: any;
+  fields?: string[];
+  paginate?: {
+    skip: number;
+    limit: number;
+  };
+};
 
 export class MongodbAdapter<T> {
   private schema: Schema<T>;
@@ -49,5 +59,16 @@ export class MongodbAdapter<T> {
     await this.closeConnection();
 
     return document as T;
+  }
+
+  async list(params: ParamsList): Promise<T[]> {
+    await this.openConnect();
+
+    const Document = this.getInstance();
+    const documents = await Document.find(params.filter, params.fields, {
+      ...params.paginate,
+    });
+
+    return documents;
   }
 }

@@ -3,6 +3,12 @@ import { Team } from '@domain/models';
 import { MongodbAdapter } from '@infra/adapters';
 import { teamSchema } from '@infra/mongodb/schemas';
 
+type Filter = {
+  where: {
+    id: string;
+  };
+};
+
 export class TeamRepository implements RepositoryContract<Team> {
   public static tableName = 'team';
   private readonly databaseAdapter: MongodbAdapter<Team>;
@@ -16,20 +22,20 @@ export class TeamRepository implements RepositoryContract<Team> {
     return { id: team.id, name: team.name };
   }
 
-  async get(id: string): Promise<Team> {
+  async get(id: string | number): Promise<Team> {
     const team = await this.databaseAdapter.get(id);
     return { id: team.id, name: team.name };
   }
 
-  async list(id: string): Promise<Team[]> {
-    throw new Error('Method not implemented.');
+  async list(): Promise<Team[]> {
+    const teams = await this.databaseAdapter.list({
+      // fields: ['id'],
+      // paginate: { limit: 2, skip: 0 },
+    });
+    return teams;
   }
 
-  async update(data: Team): Promise<Team> {
-    throw new Error('Method not implemented.');
-  }
-
-  async delete(id: string): Promise<boolean> {
+  async update(data: Team, filter: Filter): Promise<Team> {
     throw new Error('Method not implemented.');
   }
 }

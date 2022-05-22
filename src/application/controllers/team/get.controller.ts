@@ -18,7 +18,7 @@ class GetTeamController implements ControllerContract {
       };
     } catch (e) {
       throw new AppError({
-        category: 'FAILURE_CREATE_TEAM',
+        category: 'FAILURE_GET_TEAM',
         message: 'Failed in get team',
       });
     }
