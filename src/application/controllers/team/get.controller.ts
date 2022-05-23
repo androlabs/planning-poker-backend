@@ -13,7 +13,7 @@ class GetTeamController implements ControllerContract {
       const team = await this.getTeamService.perform(params.team_id);
 
       return {
-        statusCode: 200,
+        statusCode: Http.StatusCode.OK,
         data: team,
       };
     } catch (e) {

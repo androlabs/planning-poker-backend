@@ -18,7 +18,7 @@ class CreateTeamController implements ControllerContract {
       });
 
       return {
-        statusCode: 201,
+        statusCode: Http.StatusCode.CREATED,
         data: team,
       };
     } catch (e) {

@@ -3,7 +3,10 @@ import {
   makeGetTeamController,
   makeListTeamController,
 } from '@application/controllers/team';
-import { createTeamValidator, getTeamValidator } from '@application/validators';
+import {
+  createTeamValidator,
+  getTeamValidator,
+} from '@application/controllers/team/validators';
 import { Http, ResourceMapper } from '@main/interfaces';
 
 const routesTeams: ResourceMapper[] = [
@@ -23,7 +26,6 @@ const routesTeams: ResourceMapper[] = [
     endPoint: '/team',
     method: Http.Methods.get,
     controller: makeListTeamController(),
-    // validators: [getTeamValidator],
   },
 ];
 

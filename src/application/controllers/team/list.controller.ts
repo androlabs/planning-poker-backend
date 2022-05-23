@@ -18,7 +18,7 @@ class ListTeamController implements ControllerContract {
       const teams = await this.listTeamService.perform(user.id);
 
       return {
-        statusCode: 200,
+        statusCode: Http.StatusCode.OK,
         data: teams,
       };
     } catch (e) {
