@@ -18,8 +18,8 @@ export class TeamRepository implements RepositoryContract<Team> {
   }
 
   async create(data: Team): Promise<Team> {
-    const team = await this.databaseAdapter.create(data);
-    return { id: team.id, name: team.name };
+    const { id, name } = await this.databaseAdapter.create(data);
+    return { id, name };
   }
 
   async get(id: string | number): Promise<Team> {

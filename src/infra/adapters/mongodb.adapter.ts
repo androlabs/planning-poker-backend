@@ -69,6 +69,8 @@ export class MongodbAdapter<T> {
       ...params.paginate,
     });
 
+    await this.closeConnection();
+
     return documents;
   }
 }
