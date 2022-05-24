@@ -1,5 +1,5 @@
 import { User } from '@domain/models';
 
-export interface CreateUser {
+export interface CreateUserUseCase {
   perform(user: User): Promise<User>;
 }
