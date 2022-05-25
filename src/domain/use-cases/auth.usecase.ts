@@ -1,13 +1,13 @@
 import { User } from '@domain/models';
 
-export interface GenerateToken {
-  perform(params: { email: string }): Promise<string>;
+export interface GenerateTokenUseCase {
+  perform(email: string): Promise<string>;
 }
 
-export interface GetUserFromToken {
+export interface GetUserFromTokenUseCase {
   perform(token: string): Promise<User>;
 }
 
-export interface BasicAuthLogin {
+export interface BasicAuthLoginUseCase {
   perform(basic: string): Promise<string>;
 }

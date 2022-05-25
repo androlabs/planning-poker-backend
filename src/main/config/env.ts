@@ -8,6 +8,8 @@ export const env = {
   },
   secrets: {
     jwt: process.env.JWT_SECRET ?? 'abc',
+    expirationToken: '7 day',
+    saltRounds: process.env.SALTS_ROUNDS || 10,
   },
   database: {
     host: process.env.DB_HOST,
