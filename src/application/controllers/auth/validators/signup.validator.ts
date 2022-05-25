@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 export const body = Yup.object().shape({
   name: Yup.string().required(),
   email: Yup.string().lowercase().email().required(),
-  password: Yup.string().required(),
+  password: Yup.string().min(8).max(32).required(),
 });
 
 export class SignupValidator implements ValidatorContract {
@@ -15,11 +15,12 @@ export class SignupValidator implements ValidatorContract {
       await body.validate(request.body, {
         abortEarly: false,
       });
-    } catch {
+    } catch (e) {
       throw new AppError({
         message: 'Validation failed',
         category: 'FAILED_IN_VALIDATION_SIGNUP',
-        status: 400,
+        status: Http.StatusCode.BAD_REQUEST,
+        messages: e,
       });
     }
   }

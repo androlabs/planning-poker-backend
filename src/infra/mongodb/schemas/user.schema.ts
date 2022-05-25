@@ -10,6 +10,6 @@ export const userSchema = new Schema<User>({
     index: 'hashed',
   },
   name: { type: 'string', required: true },
-  email: { type: 'string', required: true },
+  email: { type: 'string', required: true, unique: true },
   password: { type: 'string', required: true, select: false },
 });

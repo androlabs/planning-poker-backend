@@ -12,8 +12,13 @@ export class UserRepository implements RepositoryContract<User> {
   }
 
   async create(data: User): Promise<User> {
-    const { id, email, name } = await this.databaseAdapter.create(data);
-    return { id, email, name };
+    try {
+      const { id, email, name } = await this.databaseAdapter.create(data);
+      return { id, email, name };
+    } catch (e: any) {
+      if (e.code === 11000) throw new Error('Email already in use');
+      throw e;
+    }
   }
 }
 
