@@ -13,11 +13,12 @@ export class CreateTeamValidator implements ValidatorContract {
       await body.validate(request.body, {
         abortEarly: false,
       });
-    } catch {
+    } catch (e) {
       throw new AppError({
         message: 'Validation failed',
         category: 'FAILED_IN_VALIDATION_CREATE_TEAM',
-        status: 400,
+        status: Http.StatusCode.BAD_REQUEST,
+        messages: e,
       });
     }
   }

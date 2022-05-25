@@ -13,11 +13,12 @@ export class GetTeamValidator implements ValidatorContract {
       await params.validate(request.params, {
         abortEarly: false,
       });
-    } catch {
+    } catch (e) {
       throw new AppError({
         message: 'Validation failed',
         category: 'FAILED_IN_VALIDATION_GET_TEAM',
-        status: 400,
+        status: Http.StatusCode.BAD_REQUEST,
+        messages: e,
       });
     }
   }
