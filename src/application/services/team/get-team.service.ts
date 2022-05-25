@@ -6,7 +6,7 @@ export class GetTeamService implements GetTeamUseCase {
   constructor(private readonly teamRepository: TeamRepository) {}
 
   async perform(id: string): Promise<Team> {
-    return await this.teamRepository.get(id);
+    return await this.teamRepository.get({ filter: { id } });
   }
 }
 

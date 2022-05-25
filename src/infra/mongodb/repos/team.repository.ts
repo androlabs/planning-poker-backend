@@ -1,13 +1,7 @@
-import { RepositoryContract } from '@domain/contracts';
+import { Repository, RepositoryContract } from '@domain/contracts';
 import { Team } from '@domain/models';
 import { MongodbAdapter } from '@infra/adapters';
 import { teamSchema } from '@infra/mongodb/schemas';
-
-type Filter = {
-  where: {
-    id: string;
-  };
-};
 
 export class TeamRepository implements RepositoryContract<Team> {
   public static tableName = 'team';
@@ -22,8 +16,8 @@ export class TeamRepository implements RepositoryContract<Team> {
     return { id, name };
   }
 
-  async get(id: string | number): Promise<Team> {
-    const team = await this.databaseAdapter.get(id);
+  async get(params: Repository.ParamsGet): Promise<Team> {
+    const team = await this.databaseAdapter.get(params);
     return { id: team.id, name: team.name };
   }
 
@@ -33,10 +27,6 @@ export class TeamRepository implements RepositoryContract<Team> {
       // paginate: { limit: 2, skip: 0 },
     });
     return teams;
-  }
-
-  async update(data: Team, filter: Filter): Promise<Team> {
-    throw new Error('Method not implemented.');
   }
 }
 

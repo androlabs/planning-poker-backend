@@ -23,7 +23,7 @@ describe(TeamRepository, () => {
   it('should be return a team by id', async () => {
     sut.get.mockResolvedValueOnce({ id: 'any_id', name: 'Generic Team' });
 
-    const team = await sut.get('any_id');
+    const team = await sut.get({ filter: { id: 'any_id' } });
 
     expect(team.id).toEqual('any_id');
   });
