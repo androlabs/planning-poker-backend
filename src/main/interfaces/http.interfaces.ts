@@ -8,7 +8,7 @@ export namespace Http {
     body: Record<string, string>;
     params: Record<string, string>;
     query: Record<string, unknown>;
-    headers: Record<string, unknown>;
+    headers: Record<any, any>;
     path: unknown;
   };
 
