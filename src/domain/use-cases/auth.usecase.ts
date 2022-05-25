@@ -9,5 +9,5 @@ export interface GetUserFromTokenUseCase {
 }
 
 export interface BasicAuthLoginUseCase {
-  perform(basic: string): Promise<string>;
+  perform(basic: string): Promise<User>;
 }

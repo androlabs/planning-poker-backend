@@ -1,3 +1,4 @@
 export interface BcryptUseCase {
-  perform(content: string): Promise<string>;
+  hash(content: string): Promise<string>;
+  compare(plainText: string, hash: string): Promise<boolean>;
 }

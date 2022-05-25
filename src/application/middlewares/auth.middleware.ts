@@ -1,10 +1,12 @@
 import { MiddlewareContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 
-export class WebhookMiddleware implements MiddlewareContract {
+export class AuthMiddleware implements MiddlewareContract {
   async handle(request: Http.Request): Promise<void | Error> {
     //
   }
 }
 
-export const webhookMiddleware = new WebhookMiddleware();
+export const makeAuthMiddleware = (): AuthMiddleware => {
+  return new AuthMiddleware();
+};

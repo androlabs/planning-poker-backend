@@ -1,16 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Repository } from '@domain/contracts';
 import { env } from '@main/config/env';
 import { logger } from '@main/config/logger';
 import { connect, disconnect, Model, model, Schema } from 'mongoose';
-
-type ParamsList = {
-  filter?: any;
-  fields?: string[];
-  paginate?: {
-    skip: number;
-    limit: number;
-  };
-};
 
 export class MongodbAdapter<T> {
   private schema: Schema<T>;
@@ -50,18 +41,18 @@ export class MongodbAdapter<T> {
     return document;
   }
 
-  async get(id: string | number): Promise<T> {
+  async get(params: Repository.ParamsGet): Promise<T> {
     await this.openConnect();
 
     const Document = this.getInstance();
-    const document = await Document.findOne({ id }).exec();
+    const document = await Document.findOne(params.filter, params.fields);
 
     await this.closeConnection();
 
     return document as T;
   }
 
-  async list(params: ParamsList): Promise<T[]> {
+  async list(params: Repository.ParamsList): Promise<T[]> {
     await this.openConnect();
 
     const Document = this.getInstance();

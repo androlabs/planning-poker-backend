@@ -10,7 +10,7 @@ export class CreateUserService implements CreateUserUseCase {
   ) {}
 
   async perform(user: User & { password: string }): Promise<User> {
-    user.password = await this.bcryptService.perform(user.password);
+    user.password = await this.bcryptService.hash(user.password);
     return await this.userRepository.create(user);
   }
 }

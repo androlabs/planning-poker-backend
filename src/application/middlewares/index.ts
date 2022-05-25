@@ -1,2 +1,1 @@
-export * from './token-session.middleware';
-export * from './webhook.middleware';
+export * from './auth.middleware';

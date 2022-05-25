@@ -1,9 +1,13 @@
 import { env } from '@main/config/env';
-import { hashSync } from 'bcrypt';
+import { compareSync, hashSync } from 'bcrypt';
 
 export class BcryptAdapter {
-  async adapt(content: string): Promise<string> {
+  async hash(content: string): Promise<string> {
     return hashSync(content, env.secrets.saltRounds);
+  }
+
+  async compare(plainText: string, hash: string): Promise<boolean> {
+    return compareSync(plainText, hash);
   }
 }
 

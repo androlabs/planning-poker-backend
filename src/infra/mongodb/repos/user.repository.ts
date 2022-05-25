@@ -1,4 +1,4 @@
-import { RepositoryContract } from '@domain/contracts';
+import { Repository, RepositoryContract } from '@domain/contracts';
 import { User } from '@domain/models';
 import { MongodbAdapter } from '@infra/adapters';
 import { userSchema } from '@infra/mongodb/schemas';
@@ -19,6 +19,10 @@ export class UserRepository implements RepositoryContract<User> {
       if (e.code === 11000) throw new Error('Email already in use');
       throw e;
     }
+  }
+
+  async get(params: Repository.ParamsGet): Promise<User> {
+    return await this.databaseAdapter.get(params);
   }
 }
 

@@ -4,8 +4,11 @@ import { BcryptAdapter, makeBcryptAdapter } from '@infra/adapters';
 export class BcryptService implements BcryptUseCase {
   constructor(private readonly bcryptAdapter: BcryptAdapter) {}
 
-  async perform(content: string): Promise<string> {
-    return await this.bcryptAdapter.adapt(content);
+  async hash(content: string): Promise<string> {
+    return await this.bcryptAdapter.hash(content);
+  }
+  async compare(plainText: string, hash: string): Promise<boolean> {
+    return await this.bcryptAdapter.compare(plainText, hash);
   }
 }
 
