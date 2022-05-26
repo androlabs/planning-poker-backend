@@ -1,8 +1,5 @@
 import { AppError } from '@application/middlewares/errors';
-import {
-  GenerateTokenService,
-  makeGenerateTokenService,
-} from '@application/services/auth';
+import { makeTokenService, TokenService } from '@application/services/auth';
 import {
   CreateUserService,
   makeCreateUserService,
@@ -13,7 +10,7 @@ import { Http } from '@main/interfaces';
 class SignupController implements ControllerContract {
   constructor(
     private readonly userCreateService: CreateUserService,
-    private readonly generateTokenService: GenerateTokenService,
+    private readonly tokenService: TokenService,
   ) {}
 
   async handle(request: Http.Request): Promise<Http.Response> {
@@ -26,7 +23,7 @@ class SignupController implements ControllerContract {
         password,
       });
 
-      const accessToken = await this.generateTokenService.perform(user.email);
+      const accessToken = await this.tokenService.generate(user.email);
 
       return {
         statusCode: Http.StatusCode.CREATED,
@@ -44,8 +41,5 @@ class SignupController implements ControllerContract {
 }
 
 export const makeSignupController = (): SignupController => {
-  return new SignupController(
-    makeCreateUserService(),
-    makeGenerateTokenService(),
-  );
+  return new SignupController(makeCreateUserService(), makeTokenService());
 };

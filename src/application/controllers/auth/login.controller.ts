@@ -1,9 +1,9 @@
 import { AppError } from '@application/middlewares/errors';
 import {
   BasicAuthLoginService,
-  GenerateTokenService,
   makeBasicAuthLoginService,
-  makeGenerateTokenService,
+  makeTokenService,
+  TokenService,
 } from '@application/services/auth';
 import { ControllerContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
@@ -11,7 +11,7 @@ import { Http } from '@main/interfaces';
 class LoginController implements ControllerContract {
   constructor(
     private readonly basicAuthLoginService: BasicAuthLoginService,
-    private readonly generateTokenService: GenerateTokenService,
+    private readonly tokenService: TokenService,
   ) {}
 
   async handle(request: Http.Request): Promise<Http.Response> {
@@ -22,7 +22,7 @@ class LoginController implements ControllerContract {
         headers.authorization,
       );
 
-      const accessToken = await this.generateTokenService.perform(user.email);
+      const accessToken = await this.tokenService.generate(user.email);
 
       return {
         statusCode: Http.StatusCode.OK,
@@ -40,8 +40,5 @@ class LoginController implements ControllerContract {
 }
 
 export const makeLoginController = (): LoginController => {
-  return new LoginController(
-    makeBasicAuthLoginService(),
-    makeGenerateTokenService(),
-  );
+  return new LoginController(makeBasicAuthLoginService(), makeTokenService());
 };

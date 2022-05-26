@@ -12,10 +12,9 @@ export class TokenAdapter {
     return jwt.decode(token) as Record<string, unknown>;
   }
 
-  async verify(token: string): Promise<boolean | Error> {
+  async verify(token: string): Promise<boolean> {
     try {
-      jwt.verify(token, env.secrets.jwt);
-      return true;
+      return jwt.verify(token, env.secrets.jwt) !== null;
     } catch {
       throw new Error('Invalid token');
     }

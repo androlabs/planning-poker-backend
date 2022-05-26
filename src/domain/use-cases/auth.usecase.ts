@@ -1,11 +1,9 @@
 import { User } from '@domain/models';
 
-export interface GenerateTokenUseCase {
-  perform(email: string): Promise<string>;
-}
-
-export interface GetUserFromTokenUseCase {
-  perform(token: string): Promise<User>;
+export interface TokenUseCase {
+  generate(email: string): Promise<string>;
+  decode(token: string): Promise<Record<any, any>>;
+  verify(token: string): Promise<boolean>;
 }
 
 export interface BasicAuthLoginUseCase {

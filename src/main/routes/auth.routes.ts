@@ -1,5 +1,6 @@
 import {
   makeLoginController,
+  makeMeController,
   makeSignupController,
 } from '@application/controllers/auth';
 import {
@@ -20,6 +21,12 @@ const authRoutes: ResourceMapper[] = [
     endPoint: '/login',
     method: Http.Methods.post,
     controller: makeLoginController(),
+    validators: [authValidator],
+  },
+  {
+    endPoint: '/me',
+    method: Http.Methods.get,
+    controller: makeMeController(),
     validators: [authValidator],
     middlewares: [makeAuthMiddleware()],
   },
