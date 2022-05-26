@@ -10,12 +10,7 @@ export class ExpressAdapter {
   ): Promise<Response | unknown> {
     try {
       const request: Http.Request = {
-        // TODO middleware auth to get decode token JWT
-        user: {
-          id: '',
-          name: '',
-          email: '',
-        },
+        ...(req.user && { user: req.user }),
         body: req.body,
         path: req.path,
         headers: req.headers,

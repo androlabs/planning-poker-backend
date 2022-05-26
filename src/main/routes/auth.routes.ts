@@ -7,7 +7,10 @@ import {
   authValidator,
   signupValidator,
 } from '@application/controllers/auth/validators';
-import { makeAuthMiddleware } from '@application/middlewares';
+import {
+  makeAuthMiddleware,
+  makeContextUserMiddleware,
+} from '@application/middlewares';
 import { Http, ResourceMapper } from '@main/interfaces';
 
 const authRoutes: ResourceMapper[] = [
@@ -28,7 +31,7 @@ const authRoutes: ResourceMapper[] = [
     method: Http.Methods.get,
     controller: makeMeController(),
     validators: [authValidator],
-    middlewares: [makeAuthMiddleware()],
+    middlewares: [makeAuthMiddleware(), makeContextUserMiddleware()],
   },
 ];
 
