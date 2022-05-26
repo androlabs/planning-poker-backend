@@ -4,7 +4,12 @@ const { compilerOptions } = require('./tsconfig.json');
 module.exports = {
   collectCoverage: true,
 
-  collectCoverageFrom: ['<rootDir>/src/**/*.ts', '!<rootDir>/src/main/**'],
+  // TODO map only paths logics
+  collectCoverageFrom: [
+    '<rootDir>/src/application/**/*.ts',
+    '<rootDir>/src/infra/mongodb/repos/**/*.ts',
+    '!<rootDir>/src/main/**',
+  ],
 
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/src/',
