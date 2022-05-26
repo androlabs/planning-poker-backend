@@ -1,17 +1,20 @@
+import { Team } from '@domain/models';
+import { MongodbAdapter } from '@infra/adapters';
+import { TeamRepository } from '@infra/mongodb/repos';
 import { mock, MockProxy } from 'jest-mock-extended';
 
-import { TeamRepository } from './team.repository';
-
 describe(TeamRepository, () => {
-  let sut: MockProxy<TeamRepository>;
+  let sut: TeamRepository;
+  let databaseAdapter: MockProxy<MongodbAdapter<Team>>;
 
   beforeEach(() => {
-    sut = mock<TeamRepository>();
+    databaseAdapter = mock<MongodbAdapter<Team>>();
+    sut = new TeamRepository(databaseAdapter);
   });
 
   it('should be create a team', async () => {
-    const mock = { id: 'jk12h3k1j23', name: 'Jedi Squad' };
-    sut.create.mockResolvedValueOnce(mock);
+    const mock = { id: 'cf282856', name: 'Jedi Squad' };
+    databaseAdapter.create.mockResolvedValueOnce(mock);
 
     const team = await sut.create({
       name: mock.name,
@@ -20,11 +23,14 @@ describe(TeamRepository, () => {
     expect(team).toEqual(mock);
   });
 
-  it('should be return a team by id', async () => {
-    sut.get.mockResolvedValueOnce({ id: 'any_id', name: 'Generic Team' });
+  it('should be get a team', async () => {
+    const mock = { id: '864a88307ec4', name: 'Jedi Order' };
+    databaseAdapter.get.mockResolvedValueOnce(mock);
 
-    const team = await sut.get({ filter: { id: 'any_id' } });
+    const team = await sut.get({
+      filter: { id: mock.id },
+    });
 
-    expect(team.id).toEqual('any_id');
+    expect(team).toEqual(mock);
   });
 });
