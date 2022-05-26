@@ -1,11 +1,12 @@
 import { BcryptService, makeBcryptService } from '@application/services/crypto';
+import { IUserRepository } from '@domain/interfaces';
 import { User } from '@domain/models';
 import { CreateUserUseCase } from '@domain/use-cases';
-import { makeUserRepository, UserRepository } from '@infra/mongodb/repos';
+import { makeUserRepository } from '@infra/mongodb/repos';
 
 export class CreateUserService implements CreateUserUseCase {
   constructor(
-    private readonly userRepository: UserRepository,
+    private readonly userRepository: IUserRepository,
     private readonly bcryptService: BcryptService,
   ) {}
 

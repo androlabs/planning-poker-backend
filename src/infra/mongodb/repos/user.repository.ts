@@ -22,7 +22,10 @@ export class UserRepository implements RepositoryContract<User> {
   }
 
   async get(params: Repository.ParamsGet): Promise<User> {
-    return await this.databaseAdapter.get(params);
+    const { id, email, name, password } = await this.databaseAdapter.get(
+      params,
+    );
+    return { id, email, name, password };
   }
 }
 
