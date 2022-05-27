@@ -4,7 +4,6 @@ const { compilerOptions } = require('./tsconfig.json');
 module.exports = {
   collectCoverage: true,
 
-  // TODO map only paths logics
   collectCoverageFrom: [
     '<rootDir>/src/application/**/*.ts',
     '<rootDir>/src/infra/mongodb/repos/**/*.ts',
@@ -17,7 +16,7 @@ module.exports = {
 
   coverageDirectory: 'coverage',
 
-  coverageProvider: 'v8',
+  coverageProvider: 'babel',
 
   coverageReporters: ['text-summary', 'lcov'],
   preset: 'ts-jest',
