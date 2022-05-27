@@ -33,12 +33,19 @@
 - date_init
 - date_end
 
-## Topic
+### Sprint-Topic
+
+- id
+- name
+- topic_id
+
+### Topic
 
 - id
 - name
 - description
 - point
+- team_id
 
 ### Team-User
 
