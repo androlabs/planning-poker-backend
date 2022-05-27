@@ -6,6 +6,17 @@ import { healthCheckRoutes } from '@main/routes/health-check.routes';
 import { routesTeams } from '@main/routes/team.routes';
 import Table from 'cli-table';
 import { Express, Router } from 'express';
+
+function logRequest(req: { id: string; method: string; path: string }) {
+  logger.info(
+    `ID: [${req.id}]`.blue +
+      ' | ' +
+      `${req.method.toLocaleUpperCase()}`.yellow +
+      ' | ' +
+      `${req.path}`.green,
+  );
+}
+
 export const mappingRoutes = (app: Express): void => {
   const resources: ResourceMapper[] = [
     ...routesTeams,
@@ -30,13 +41,7 @@ export const mappingRoutes = (app: Express): void => {
   resources.forEach((resource) => {
     const { method, endPoint } = resource;
     router[`${method}`](endPoint, (req, res, next) => {
-      logger.info(
-        `ID: [${req.id}]`.blue +
-          ' | ' +
-          `${method.toLocaleUpperCase()}`.yellow +
-          ' | ' +
-          `${req.path}`.green,
-      );
+      logRequest(req);
       expressAdapter.adapt(resource, req, res, next);
     });
   });
