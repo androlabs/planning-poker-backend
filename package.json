@@ -27,6 +27,7 @@
   },
   "homepage": "git@github.com:androlabs/planning-poker-backend.git#readme",
   "devDependencies": {
+    "@faker-js/faker": "^7.1.0",
     "@jest-mock/express": "^1.4.5",
     "@types/axios": "^0.14.0",
     "@types/bcrypt": "^5.0.0",

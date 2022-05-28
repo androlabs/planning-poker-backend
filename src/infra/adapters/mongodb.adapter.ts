@@ -64,4 +64,6 @@ export class MongodbAdapter<T> {
 
     return documents;
   }
+
+  // TODO Implement count
 }

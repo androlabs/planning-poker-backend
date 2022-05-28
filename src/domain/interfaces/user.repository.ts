@@ -4,4 +4,5 @@ import { User } from '@domain/models';
 export interface IUserRepository extends RepositoryContract<User> {
   get(params: Repository.ParamsGet): Promise<User>;
   create(data: User): Promise<User>;
+  list(params: Repository.ParamsList): Promise<User[]>;
 }

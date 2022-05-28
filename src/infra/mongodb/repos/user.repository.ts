@@ -22,13 +22,27 @@ export class UserRepository implements RepositoryContract<User> {
   }
 
   async get(params: Repository.ParamsGet): Promise<User> {
-    const { id, email, name, password } = await this.databaseAdapter.get(
-      params,
-    );
-    return { id, email, name, password };
+    const user = await this.databaseAdapter.get(params);
+
+    if (!user?.id) throw new Error('User not found');
+
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+    };
+  }
+
+  async list(params: Repository.ParamsList = {}): Promise<User[]> {
+    const data = await this.databaseAdapter.list(params);
+    return data.map(({ id, email, name, password }) => {
+      return { id, email, name, password };
+    });
   }
 }
 
+/* istanbul ignore next */
 export const makeUserRepository = (): UserRepository => {
   const mongoDbAdapter = new MongodbAdapter<User>(
     userSchema,
