@@ -22,6 +22,7 @@ describe(UserRepository, () => {
       delete mock.password;
 
       expect(user).toEqual(mock);
+      expect(databaseAdapter.create).toHaveBeenCalledTimes(1);
     });
 
     it('should be error in user created', async () => {
@@ -31,6 +32,7 @@ describe(UserRepository, () => {
       const promise = sut.create(mock);
 
       expect(promise).rejects.toThrow(new Error('generic error'));
+      expect(databaseAdapter.create).toHaveBeenCalledTimes(1);
     });
 
     it('should be duplicate key error in user created', async () => {
@@ -40,6 +42,7 @@ describe(UserRepository, () => {
       const promise = sut.create(mock);
 
       expect(promise).rejects.toThrow();
+      expect(databaseAdapter.create).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -54,6 +57,7 @@ describe(UserRepository, () => {
       });
 
       expect(user).toEqual(mock);
+      expect(databaseAdapter.get).toHaveBeenCalledTimes(1);
     });
 
     it('should be return error when not found user', async () => {
@@ -61,17 +65,19 @@ describe(UserRepository, () => {
       const promise = sut.get({ filter: { id: mock.id } });
 
       expect(promise).rejects.toThrow('User not found');
+      expect(databaseAdapter.get).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('List users', () => {
     it('should be return array of users', async () => {
       const mock = makeUsers(15);
-
       databaseAdapter.list.mockResolvedValueOnce(mock);
 
       const users = await sut.list();
+
       expect(users).toHaveLength(15);
+      expect(databaseAdapter.list).toHaveBeenCalledTimes(1);
     });
   });
 });

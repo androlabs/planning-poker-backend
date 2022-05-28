@@ -18,18 +18,21 @@ export class TeamRepository implements RepositoryContract<Team> {
 
   async get(params: Repository.ParamsGet): Promise<Team> {
     const team = await this.databaseAdapter.get(params);
+
+    if (!team?.id) throw new Error('Team not found');
+
     return { id: team.id, name: team.name };
   }
 
-  async list(): Promise<Team[]> {
-    const teams = await this.databaseAdapter.list({
-      // fields: ['id'],
-      // paginate: { limit: 2, skip: 0 },
+  async list(params: Repository.ParamsList = {}): Promise<Team[]> {
+    const teams = await this.databaseAdapter.list(params);
+    return teams.map(({ id, name }) => {
+      return { id, name };
     });
-    return teams;
   }
 }
 
+/* istanbul ignore next */
 export const makeTeamRepository = (): TeamRepository => {
   const mongoDbAdapter = new MongodbAdapter<Team>(
     teamSchema,

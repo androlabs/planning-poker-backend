@@ -1,3 +1,4 @@
+import { makeTeam, makeTeams } from '@domain/fakers';
 import { Team } from '@domain/models';
 import { MongodbAdapter } from '@infra/adapters';
 import { TeamRepository } from '@infra/mongodb/repos';
@@ -12,25 +13,54 @@ describe(TeamRepository, () => {
     sut = new TeamRepository(databaseAdapter);
   });
 
-  it('should be create a team', async () => {
-    const mock = { id: 'cf282856', name: 'Jedi Squad' };
-    databaseAdapter.create.mockResolvedValueOnce(mock);
+  describe('Create Team', () => {
+    it('should be create a team', async () => {
+      const mock = makeTeam();
+      databaseAdapter.create.mockResolvedValueOnce(mock);
 
-    const team = await sut.create({
-      name: mock.name,
+      const team = await sut.create({
+        name: mock.name,
+      });
+
+      expect(team).toEqual(mock);
+      expect(databaseAdapter.create).toHaveBeenCalledTimes(1);
     });
-
-    expect(team).toEqual(mock);
   });
 
-  it('should be get a team', async () => {
-    const mock = { id: '864a88307ec4', name: 'Jedi Order' };
-    databaseAdapter.get.mockResolvedValueOnce(mock);
+  describe('Get Team', () => {
+    it('should be get a team', async () => {
+      const mock = makeTeam();
+      databaseAdapter.get.mockResolvedValueOnce(mock);
 
-    const team = await sut.get({
-      filter: { id: mock.id },
+      const team = await sut.get({
+        filter: { id: mock.id },
+      });
+
+      expect(team).toEqual(mock);
+      expect(databaseAdapter.get).toHaveBeenCalledTimes(1);
     });
 
-    expect(team).toEqual(mock);
+    it('should return error when not found team', async () => {
+      const mock = makeTeam();
+
+      const promise = sut.get({
+        filter: { id: mock.id },
+      });
+
+      expect(promise).rejects.toThrow('Team not found');
+      expect(databaseAdapter.get).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('List Teams', () => {
+    it('should be return array of teams', async () => {
+      const mock = makeTeams(5);
+      databaseAdapter.list.mockResolvedValueOnce(mock);
+
+      const teams = await sut.list();
+
+      expect(teams).toHaveLength(5);
+      expect(databaseAdapter.list).toHaveBeenCalledTimes(1);
+    });
   });
 });
