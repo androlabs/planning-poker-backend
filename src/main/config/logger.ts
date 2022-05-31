@@ -1,6 +1,7 @@
 import 'colors';
 
 import { LoggerContract } from '@domain/contracts';
+import { env } from '@main/config/env';
 import dayjs from 'dayjs';
 import winston from 'winston';
 
@@ -23,10 +24,10 @@ const loggerPrint = winston.createLogger({
 
 export class Logger implements LoggerContract {
   info(message: string): void {
-    loggerPrint.info(message);
+    if (env.app.runtime !== 'test') loggerPrint.info(message);
   }
   error(message: string, stack: unknown): void {
-    loggerPrint.error(message, stack);
+    if (env.app.runtime !== 'test') loggerPrint.error(message, stack);
   }
 }
 

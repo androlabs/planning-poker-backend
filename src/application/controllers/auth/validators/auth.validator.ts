@@ -24,4 +24,5 @@ export class AuthValidator implements ValidatorContract {
   }
 }
 
+/* istanbul ignore next */
 export const authValidator = new AuthValidator();
