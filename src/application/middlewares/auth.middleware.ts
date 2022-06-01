@@ -24,6 +24,7 @@ export class AuthMiddleware implements MiddlewareContract {
   }
 }
 
+/* istanbul ignore next */
 export const makeAuthMiddleware = (): AuthMiddleware => {
   return new AuthMiddleware(makeTokenService());
 };

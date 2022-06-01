@@ -37,6 +37,7 @@ export class ContextUserMiddleware implements MiddlewareContract {
   }
 }
 
+/* istanbul ignore next */
 export const makeContextUserMiddleware = (): ContextUserMiddleware => {
   return new ContextUserMiddleware(makeTokenService(), makeGetUserService());
 };
