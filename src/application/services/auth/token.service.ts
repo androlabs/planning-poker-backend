@@ -17,6 +17,7 @@ export class TokenService implements TokenUseCase {
   }
 }
 
+/* istanbul ignore next */
 export const makeTokenService = (): TokenService => {
   return new TokenService(makeTokenAdapter());
 };

@@ -33,6 +33,7 @@ export class BasicAuthLoginService implements BasicAuthLoginUseCase {
   }
 }
 
+/* istanbul ignore next */
 export const makeBasicAuthLoginService = (): BasicAuthLoginService => {
   return new BasicAuthLoginService(makeUserRepository(), makeBcryptService());
 };
