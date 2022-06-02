@@ -16,6 +16,7 @@ export class CreateUserService implements CreateUserUseCase {
   }
 }
 
+/* istanbul ignore next */
 export const makeCreateUserService = (): CreateUserService => {
   return new CreateUserService(makeUserRepository(), makeBcryptService());
 };

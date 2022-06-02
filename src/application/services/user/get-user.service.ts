@@ -12,6 +12,7 @@ export class GetUserService implements GetUserUseCase {
   }
 }
 
+/* istanbul ignore next */
 export const makeGetUserService = (): GetUserService => {
   return new GetUserService(makeUserRepository());
 };
