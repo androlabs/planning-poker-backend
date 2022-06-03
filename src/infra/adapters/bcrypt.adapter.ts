@@ -3,7 +3,7 @@ import { compareSync, hashSync } from 'bcrypt';
 
 export class BcryptAdapter {
   async hash(content: string): Promise<string> {
-    return hashSync(content, env.secrets.saltRounds);
+    return hashSync(content, Number(env.secrets.saltRounds));
   }
 
   async compare(plainText: string, hash: string): Promise<boolean> {
