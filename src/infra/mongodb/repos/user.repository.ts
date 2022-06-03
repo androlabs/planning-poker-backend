@@ -24,7 +24,7 @@ export class UserRepository implements RepositoryContract<User> {
   async get(params: Repository.ParamsGet): Promise<User> {
     const user = await this.databaseAdapter.get(params);
 
-    if (!user?.id) throw new Error('User not found');
+    if (!user) throw new Error('User not found');
 
     return {
       id: user.id,
