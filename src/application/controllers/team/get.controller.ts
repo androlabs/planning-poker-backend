@@ -16,10 +16,12 @@ class GetTeamController implements ControllerContract {
         statusCode: Http.StatusCode.OK,
         data: team,
       };
-    } catch (e) {
+    } catch (e: any) {
       throw new AppError({
         category: 'FAILURE_GET_TEAM',
         message: 'Failed in get team',
+        status: Http.StatusCode.BAD_REQUEST,
+        messages: e.message,
       });
     }
   }

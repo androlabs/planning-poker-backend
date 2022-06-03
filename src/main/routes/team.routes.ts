@@ -1,7 +1,6 @@
 import {
   makeCreateTeamController,
   makeGetTeamController,
-  makeListTeamController,
 } from '@application/controllers/team';
 import {
   createTeamValidator,
@@ -15,23 +14,17 @@ import { Http, ResourceMapper } from '@main/interfaces';
 
 const routesTeams: ResourceMapper[] = [
   {
-    endPoint: '/team',
+    endPoint: '/teams',
     method: Http.Methods.post,
     controller: makeCreateTeamController(),
     validators: [createTeamValidator],
     middlewares: [makeAuthMiddleware(), makeContextUserMiddleware()],
   },
   {
-    endPoint: '/team/:team_id',
+    endPoint: '/teams/:team_id',
     method: Http.Methods.get,
     controller: makeGetTeamController(),
     validators: [getTeamValidator],
-    middlewares: [makeAuthMiddleware(), makeContextUserMiddleware()],
-  },
-  {
-    endPoint: '/team',
-    method: Http.Methods.get,
-    controller: makeListTeamController(),
     middlewares: [makeAuthMiddleware(), makeContextUserMiddleware()],
   },
 ];

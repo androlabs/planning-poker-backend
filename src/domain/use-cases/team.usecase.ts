@@ -1,3 +1,4 @@
+import { Repository } from '@domain/contracts';
 import { Team } from '@domain/models';
 
 export interface CreateTeamUseCase {
@@ -9,5 +10,5 @@ export interface GetTeamUseCase {
 }
 
 export interface ListTeamUseCase {
-  perform(userId: string): Promise<Team[]>;
+  perform(params: Repository.ParamsList): Promise<Team[]>;
 }
