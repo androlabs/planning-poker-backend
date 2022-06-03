@@ -36,7 +36,7 @@
 ### Sprint-Topic
 
 - id
-- name
+- sprint_id
 - topic_id
 
 ### Topic
@@ -59,3 +59,15 @@
 - who_invite
 - expires
 - secret_invite
+
+### Session (Planning Poker)
+
+- id
+- name
+- expires
+
+### Session-Topic
+
+- id
+- topic_id
+- session_id
