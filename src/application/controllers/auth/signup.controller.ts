@@ -7,7 +7,7 @@ import {
 import { ControllerContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 
-class SignupController implements ControllerContract {
+export class SignupController implements ControllerContract {
   constructor(
     private readonly userCreateService: CreateUserService,
     private readonly tokenService: TokenService,
@@ -40,6 +40,7 @@ class SignupController implements ControllerContract {
   }
 }
 
+/* istanbul ignore next */
 export const makeSignupController = (): SignupController => {
   return new SignupController(makeCreateUserService(), makeTokenService());
 };

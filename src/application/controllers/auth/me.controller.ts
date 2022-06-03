@@ -3,7 +3,7 @@ import { GetUserService, makeGetUserService } from '@application/services/user';
 import { ControllerContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 
-class MeController implements ControllerContract {
+export class MeController implements ControllerContract {
   constructor(
     private readonly tokenService: TokenService,
     private readonly getUserService: GetUserService,
@@ -24,6 +24,7 @@ class MeController implements ControllerContract {
   }
 }
 
+/* istanbul ignore next */
 export const makeMeController = (): MeController => {
   return new MeController(makeTokenService(), makeGetUserService());
 };

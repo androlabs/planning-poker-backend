@@ -17,3 +17,9 @@ export const makeRequest = (): Http.Request => {
     },
   };
 };
+
+export const makeBasicAuthToken = (): string =>
+  'Basic YWRtaW5AdGVzdC5jb206c3Ryb25ncGFzcw==';
+
+export const makeBearerAuthToken = (): string =>
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTY1MzUyMjE2OCwiZXhwIjoxNjU0MTI2OTY4fQ.tOi1FSCzImduCzLf9m2WtQ1Qr2Ld0x2z9qEwjoQlLPI';

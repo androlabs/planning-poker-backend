@@ -8,7 +8,7 @@ import {
 import { ControllerContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 
-class LoginController implements ControllerContract {
+export class LoginController implements ControllerContract {
   constructor(
     private readonly basicAuthLoginService: BasicAuthLoginService,
     private readonly tokenService: TokenService,
@@ -39,6 +39,7 @@ class LoginController implements ControllerContract {
   }
 }
 
+/* istanbul ignore next */
 export const makeLoginController = (): LoginController => {
   return new LoginController(makeBasicAuthLoginService(), makeTokenService());
 };
