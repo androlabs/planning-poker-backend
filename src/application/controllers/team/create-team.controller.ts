@@ -10,7 +10,7 @@ import {
 import { ControllerContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 
-class CreateTeamController implements ControllerContract {
+export class CreateTeamController implements ControllerContract {
   constructor(
     private readonly createTeamService: CreateTeamService,
     private readonly createTeamUserService: CreateTeamUserService,
@@ -25,9 +25,9 @@ class CreateTeamController implements ControllerContract {
       });
 
       await this.createTeamUserService.perform({
-        is_owner: true,
         team_id: team.id as string,
         user_id: request.user.id,
+        is_owner: true,
       });
 
       return {

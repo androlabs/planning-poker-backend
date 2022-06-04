@@ -1,2 +1,2 @@
-export * from './get.controller';
-export * from './post.controller';
+export * from './create-team.controller';
+export * from './get-team.controller';

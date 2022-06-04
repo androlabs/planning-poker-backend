@@ -7,7 +7,7 @@ import { Http, ResourceMapper } from '@main/interfaces';
 
 const routesTeamsUser: ResourceMapper[] = [
   {
-    endPoint: '/user/teams',
+    endPoint: '/users/teams',
     method: Http.Methods.get,
     controller: makeListTeamsOfUserController(),
     middlewares: [makeAuthMiddleware(), makeContextUserMiddleware()],

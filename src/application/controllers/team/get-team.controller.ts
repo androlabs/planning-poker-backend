@@ -3,7 +3,7 @@ import { GetTeamService, makeGetTeamService } from '@application/services/team';
 import { ControllerContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 
-class GetTeamController implements ControllerContract {
+export class GetTeamController implements ControllerContract {
   constructor(private readonly getTeamService: GetTeamService) {}
 
   async handle(request: Http.Request): Promise<Http.Response> {
@@ -27,6 +27,7 @@ class GetTeamController implements ControllerContract {
   }
 }
 
+/* istanbul ignore next */
 export const makeGetTeamController = (): GetTeamController => {
   return new GetTeamController(makeGetTeamService());
 };
