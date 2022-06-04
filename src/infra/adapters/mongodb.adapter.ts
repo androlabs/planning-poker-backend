@@ -17,12 +17,10 @@ export class MongodbAdapter<T> {
     await connect(`mongodb://${user}:${password}@${host}:27017`, {
       dbName: 'planning-poker',
     });
-    logger.info('Connection MongoDB opened');
   }
 
   private async closeConnection(): Promise<void> {
     await disconnect();
-    logger.info('Connection MongoDB closed');
   }
 
   private getInstance(): Model<T> {
