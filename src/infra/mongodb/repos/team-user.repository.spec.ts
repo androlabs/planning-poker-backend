@@ -18,9 +18,9 @@ describe(TeamUserRepository, () => {
       const mock = makeTeamUser();
       databaseAdapter.create.mockResolvedValueOnce(mock);
 
-      const team = await sut.create(mock);
+      const teamUser = await sut.create(mock);
 
-      expect(team).toEqual(mock);
+      expect(teamUser).toEqual(mock);
       expect(databaseAdapter.create).toHaveBeenCalledTimes(1);
     });
   });
@@ -30,9 +30,9 @@ describe(TeamUserRepository, () => {
       const mock = makeTeamUsers(5);
       databaseAdapter.list.mockResolvedValueOnce(mock);
 
-      const team = await sut.list({ filter: { team_id: 'any_team_id' } });
+      const teamUser = await sut.list({ filter: { team_id: 'any_team_id' } });
 
-      expect(team).toEqual(mock);
+      expect(teamUser).toEqual(mock);
       expect(databaseAdapter.list).toHaveBeenCalledTimes(1);
     });
   });
