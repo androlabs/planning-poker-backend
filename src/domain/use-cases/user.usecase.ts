@@ -7,3 +7,7 @@ export interface CreateUserUseCase {
 export interface GetUserUseCase {
   perform(params: Repository.ParamsGet): Promise<User>;
 }
+
+export interface ListUserUseCase {
+  perform(params: Repository.ParamsList): Promise<User[]>;
+}
