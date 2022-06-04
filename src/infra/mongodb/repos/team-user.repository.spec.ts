@@ -1,10 +1,5 @@
-import {
-  makeTeam,
-  makeTeams,
-  makeTeamUser,
-  makeTeamUsers,
-} from '@domain/fakers';
-import { Team, TeamUser } from '@domain/models';
+import { makeTeamUser, makeTeamUsers } from '@domain/fakers';
+import { TeamUser } from '@domain/models';
 import { MongodbAdapter } from '@infra/adapters';
 import { TeamUserRepository } from '@infra/mongodb/repos';
 import { mock, MockProxy } from 'jest-mock-extended';
