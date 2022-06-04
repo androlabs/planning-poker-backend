@@ -2,10 +2,12 @@ import {
   ListTeamUserService,
   makeListTeamUserService,
 } from '@application/services/team-user';
+import {
+  ListUserService,
+  makeListUserService,
+} from '@application/services/user';
 import { User } from '@domain/models';
 import { ListUsersOfTeamUseCase } from '@domain/use-cases';
-
-import { ListUserService, makeListUserService } from './list.service';
 
 export class ListUsersOfTeamService implements ListUsersOfTeamUseCase {
   constructor(
