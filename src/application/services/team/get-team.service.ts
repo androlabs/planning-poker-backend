@@ -11,6 +11,7 @@ export class GetTeamService implements GetTeamUseCase {
   }
 }
 
+/* istanbul ignore next */
 export const makeGetTeamService = (): GetTeamService => {
   return new GetTeamService(makeTeamRepository());
 };
