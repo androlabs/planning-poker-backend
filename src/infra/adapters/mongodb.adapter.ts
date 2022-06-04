@@ -1,6 +1,5 @@
 import { Repository } from '@domain/contracts';
 import { env } from '@main/config/env';
-import { logger } from '@main/config/logger';
 import { connect, disconnect, Model, model, Schema } from 'mongoose';
 
 export class MongodbAdapter<T> {
