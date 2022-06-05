@@ -63,4 +63,29 @@ describe(TeamRepository, () => {
       expect(databaseAdapter.list).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe('Update Team', () => {
+    it('should be update team', async () => {
+      const mock = makeTeam({ id: 'any_team_id', name: 'Squad Bravo' });
+      databaseAdapter.update.mockResolvedValueOnce(mock);
+
+      const teamUpdated = await sut.update(
+        { name: 'Squad Bravo' },
+        { filter: { id: 'any_team_id' } },
+      );
+
+      expect(teamUpdated).toEqual(mock);
+    });
+
+    it('should be return error when update team', async () => {
+      databaseAdapter.update.mockResolvedValueOnce({ id: undefined, name: '' });
+
+      const promise = sut.update(
+        { name: 'Squad Bravo' },
+        { filter: { id: 'any_team_id' } },
+      );
+
+      expect(promise).rejects.toThrow('Team not found');
+    });
+  });
 });
