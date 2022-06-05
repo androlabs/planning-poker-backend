@@ -16,11 +16,16 @@ export namespace Repository {
   export type ParamsUpdate = {
     filter?: any;
   };
+
+  export type ParamsDelete = {
+    filter?: any;
+  };
 }
 export interface RepositoryContract<T> {
   create?: (data: T) => Promise<T>;
   get?: (params: Repository.ParamsGet) => Promise<T>;
   list?: (params: Repository.ParamsList) => Promise<T[]>;
+  count?: (params: Repository.ParamsList) => Promise<number>;
   update?: (data: T, filter: Repository.ParamsUpdate) => Promise<T>;
-  delete?: (id: string | number, filter: any) => Promise<boolean>;
+  delete?: (filter: Repository.ParamsDelete) => Promise<boolean>;
 }

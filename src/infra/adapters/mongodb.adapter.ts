@@ -73,5 +73,25 @@ export class MongodbAdapter<T> {
     return await this.get(filter);
   }
 
-  // TODO Implement count
+  async count(filter: Repository.ParamsList): Promise<number> {
+    await this.openConnect();
+
+    const Document = this.getInstance();
+    const count = await Document.countDocuments(filter);
+
+    await this.closeConnection();
+
+    return count;
+  }
+
+  async delete(filter: Repository.ParamsDelete): Promise<boolean> {
+    await this.openConnect();
+
+    const Document = this.getInstance();
+    const result = await Document.deleteOne(filter);
+
+    await this.closeConnection();
+
+    return result.deletedCount === 1;
+  }
 }
