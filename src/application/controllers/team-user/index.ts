@@ -1,2 +1,2 @@
-export * from './list.controller';
-export * from './list-user-of-team.controller';
+export * from './list-teams-of-user.controller';
+export * from './list-users-of-team.controller';
