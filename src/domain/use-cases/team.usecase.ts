@@ -12,3 +12,7 @@ export interface GetTeamUseCase {
 export interface ListTeamUseCase {
   perform(params: Repository.ParamsList): Promise<Team[]>;
 }
+
+export interface UpdateTeamUseCase {
+  perform(data: Team, filter: Repository.ParamsUpdate): Promise<Team>;
+}

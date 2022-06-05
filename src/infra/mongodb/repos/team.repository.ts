@@ -30,6 +30,14 @@ export class TeamRepository implements RepositoryContract<Team> {
       return { id, name };
     });
   }
+
+  async update(data: Team, filter: Repository.ParamsUpdate): Promise<Team> {
+    const team = await this.databaseAdapter.update(data, filter);
+
+    if (!team?.id) throw new Error('Team not found');
+
+    return { id: team.id, name: team.name };
+  }
 }
 
 /* istanbul ignore next */

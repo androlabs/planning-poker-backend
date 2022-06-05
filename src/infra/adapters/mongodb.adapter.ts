@@ -62,5 +62,16 @@ export class MongodbAdapter<T> {
     return documents;
   }
 
+  async update(data: T, filter: Repository.ParamsUpdate): Promise<T> {
+    await this.openConnect();
+
+    const Document = this.getInstance();
+    await Document.updateOne(filter, data);
+
+    await this.closeConnection();
+
+    return await this.get(filter);
+  }
+
   // TODO Implement count
 }

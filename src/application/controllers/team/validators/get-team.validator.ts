@@ -3,7 +3,7 @@ import { ValidatorContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 import * as Yup from 'yup';
 
-export const params = Yup.object().shape({
+const params = Yup.object().shape({
   team_id: Yup.string().required(),
 });
 

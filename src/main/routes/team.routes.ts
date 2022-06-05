@@ -1,10 +1,12 @@
 import {
   makeCreateTeamController,
   makeGetTeamController,
+  makeUpdateTeamController,
 } from '@application/controllers/team';
 import {
   createTeamValidator,
   getTeamValidator,
+  updateTeamValidator,
 } from '@application/controllers/team/validators';
 import { makeListUsersOfTeamController } from '@application/controllers/team-user';
 import {
@@ -33,6 +35,13 @@ const routesTeams: ResourceMapper[] = [
     method: Http.Methods.get,
     controller: makeListUsersOfTeamController(),
     validators: [getTeamValidator],
+    middlewares: [makeAuthMiddleware(), makeContextUserMiddleware()],
+  },
+  {
+    endPoint: '/teams/:team_id',
+    method: Http.Methods.put,
+    controller: makeUpdateTeamController(),
+    validators: [getTeamValidator, updateTeamValidator],
     middlewares: [makeAuthMiddleware(), makeContextUserMiddleware()],
   },
 ];
