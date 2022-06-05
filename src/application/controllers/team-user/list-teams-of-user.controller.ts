@@ -6,7 +6,7 @@ import {
 import { ControllerContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 
-class ListTeamsOfUserController implements ControllerContract {
+export class ListTeamsOfUserController implements ControllerContract {
   constructor(private readonly listTeamOfUserService: ListTeamsOfUserService) {}
 
   async handle(request: Http.Request): Promise<Http.Response> {

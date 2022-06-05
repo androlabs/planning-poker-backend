@@ -6,7 +6,7 @@ import {
 import { ControllerContract } from '@domain/contracts';
 import { Http } from '@main/interfaces';
 
-class ListUsersOfTeamController implements ControllerContract {
+export class ListUsersOfTeamController implements ControllerContract {
   constructor(
     private readonly listUsersOfTeamService: ListUsersOfTeamService,
   ) {}
