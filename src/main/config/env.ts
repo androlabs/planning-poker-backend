@@ -9,6 +9,7 @@ export const env = {
   },
   secrets: {
     jwt: process.env.JWT_SECRET ?? 'abc',
+    secretInvites: process.env.SECRET_INVITES,
     expirationToken: '7 day',
     saltRounds: process.env.SALTS_ROUNDS || 10,
   },

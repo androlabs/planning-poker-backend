@@ -35,13 +35,11 @@
 
 ### Sprint-Topic
 
-- id
 - sprint_id
 - topic_id
 
 ### Sprint-Team
 
-- id
 - sprint_id
 - team_id
 
