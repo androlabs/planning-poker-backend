@@ -1,6 +1,6 @@
 import { UpdateTeamService } from '@application/services/team';
 import { makeTeam } from '@domain/fakers';
-import { ITeamRepository } from '@domain/interfaces/team.repository';
+import { ITeamRepository } from '@domain/interfaces';
 import { mock, MockProxy } from 'jest-mock-extended';
 
 describe(UpdateTeamService, () => {

@@ -1,4 +1,4 @@
-import { ITeamRepository } from '@domain/interfaces/team.repository';
+import { ITeamRepository } from '@domain/interfaces';
 import { Team } from '@domain/models';
 import { CreateTeamUseCase } from '@domain/use-cases';
 import { makeTeamRepository } from '@infra/mongodb/repos';

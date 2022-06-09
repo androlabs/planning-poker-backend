@@ -1,5 +1,5 @@
 import { Repository } from '@domain/contracts';
-import { ITeamRepository } from '@domain/interfaces/team.repository';
+import { ITeamRepository } from '@domain/interfaces';
 import { Team } from '@domain/models';
 import { ListTeamUseCase } from '@domain/use-cases';
 import { makeTeamRepository } from '@infra/mongodb/repos';
