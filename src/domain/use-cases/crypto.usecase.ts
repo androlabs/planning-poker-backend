@@ -7,3 +7,11 @@ export interface CryptTeamInvitesUseCase {
   encrypt(content: string): string;
   compare(content: string, hash: string): boolean;
 }
+
+export interface SecretTeamInvitesUseCase {
+  perform(params: {
+    teamId: string;
+    whoInvite: string;
+    expires: number;
+  }): string;
+}
