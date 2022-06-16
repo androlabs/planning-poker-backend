@@ -4,6 +4,7 @@ import { ResourceMapper } from '@main/interfaces';
 import { authRoutes } from '@main/routes/auth.routes';
 import { healthCheckRoutes } from '@main/routes/health-check.routes';
 import { routesTeams } from '@main/routes/team.routes';
+import { routesTeamInvite } from '@main/routes/team-invite.routes';
 import { routesTeamsUser } from '@main/routes/team-user.routes';
 import Table from 'cli-table';
 import { Express, Router } from 'express';
@@ -22,6 +23,7 @@ export const mappingRoutes = (app: Express): void => {
   const resources: ResourceMapper[] = [
     ...routesTeams,
     ...routesTeamsUser,
+    ...routesTeamInvite,
     ...authRoutes,
     ...healthCheckRoutes,
   ];
