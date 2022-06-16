@@ -9,6 +9,10 @@ export interface ListTeamUserUseCase {
   perform(params: Repository.ParamsList): Promise<TeamUser[]>;
 }
 
+export interface GetTeamUserUseCase {
+  perform(params: Repository.ParamsGet): Promise<TeamUser>;
+}
+
 export interface ListTeamsOfUserUseCase {
   perform(userId: string): Promise<Team[]>;
 }

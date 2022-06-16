@@ -24,6 +24,18 @@ export class TeamUserRepository implements RepositoryContract<TeamUser> {
       return { is_owner, user_id, team_id };
     });
   }
+
+  async get(params: Repository.ParamsGet): Promise<TeamUser> {
+    const teamUser = await this.databaseAdapter.get(params);
+
+    if (!teamUser) throw new Error('Team User not found');
+
+    return {
+      is_owner: teamUser.is_owner,
+      user_id: teamUser.user_id,
+      team_id: teamUser.team_id,
+    };
+  }
 }
 
 /* istanbul ignore next */
