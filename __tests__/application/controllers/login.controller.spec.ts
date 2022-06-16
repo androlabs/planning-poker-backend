@@ -1,4 +1,4 @@
-import { LoginController } from '@application/controllers/auth';
+import { LoginController } from '../../../src/application/controllers/auth';
 import {
   BasicAuthLoginService,
   TokenService,
@@ -8,8 +8,8 @@ import {
   makeBearerAuthToken,
   makeRequest,
   makeUser,
-} from '@domain/fakers';
-import { Http } from '@main/interfaces';
+} from '../../../src/domain/fakers';
+import { Http } from '../../../src/main/interfaces';
 import { mock, MockProxy } from 'jest-mock-extended';
 
 describe(LoginController, () => {

@@ -1,5 +1,4 @@
 import {
-  makeLoginController,
   makeMeController,
   makeSignupController,
 } from '@application/controllers/auth';
@@ -11,6 +10,7 @@ import {
   makeAuthMiddleware,
   makeContextUserMiddleware,
 } from '@application/middlewares';
+import { makeLoginController } from '@main/factories/application/controllers';
 import { Http, ResourceMapper } from '@main/interfaces';
 
 const authRoutes: ResourceMapper[] = [

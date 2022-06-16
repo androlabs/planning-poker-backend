@@ -41,12 +41,3 @@ export class UserRepository implements RepositoryContract<User> {
     });
   }
 }
-
-/* istanbul ignore next */
-export const makeUserRepository = (): UserRepository => {
-  const mongoDbAdapter = new MongodbAdapter<User>(
-    userSchema,
-    UserRepository.tableName,
-  );
-  return new UserRepository(mongoDbAdapter);
-};

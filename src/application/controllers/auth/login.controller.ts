@@ -1,28 +1,22 @@
 import { AppError } from '@application/middlewares/errors';
-import {
-  BasicAuthLoginService,
-  makeBasicAuthLoginService,
-  makeTokenService,
-  TokenService,
-} from '@application/services/auth';
 import { ControllerContract } from '@domain/contracts';
+import { Encrypter } from '@domain/interfaces/protocols/cryptography.protocol';
+import { BasicAuthLoginUsecase } from '@domain/use-cases/auth/basic-auth-login.usecase';
 import { Http } from '@main/interfaces';
 
 export class LoginController implements ControllerContract {
   constructor(
-    private readonly basicAuthLoginService: BasicAuthLoginService,
-    private readonly tokenService: TokenService,
+    private readonly basicAuthLoginUseCase: BasicAuthLoginUsecase,
+    private readonly jwt: Encrypter,
   ) {}
 
   async handle(request: Http.Request): Promise<Http.Response> {
     const { headers } = request;
 
     try {
-      const user = await this.basicAuthLoginService.perform(
-        headers.authorization,
-      );
+      const user = await this.basicAuthLoginUseCase(headers.authorization);
 
-      const accessToken = await this.tokenService.generate(user.email);
+      const accessToken = await this.jwt.encode({ email: user.email });
 
       return {
         statusCode: Http.StatusCode.OK,
@@ -38,8 +32,3 @@ export class LoginController implements ControllerContract {
     }
   }
 }
-
-/* istanbul ignore next */
-export const makeLoginController = (): LoginController => {
-  return new LoginController(makeBasicAuthLoginService(), makeTokenService());
-};

@@ -1,8 +1,8 @@
-import { MeController } from '@application/controllers/auth';
+import { MeController } from '../../../src/application/controllers/auth';
 import { TokenService } from '@application/services/auth';
-import { GetUserService } from '@application/services/user';
-import { makeBearerAuthToken, makeRequest, makeUser } from '@domain/fakers';
-import { Http } from '@main/interfaces';
+import { GetUserService } from '../../../src/application/services/user';
+import { makeBearerAuthToken, makeRequest, makeUser } from '../../../src/domain/fakers';
+import { Http } from '../../../src/main/interfaces';
 import { mock, MockProxy } from 'jest-mock-extended';
 
 describe(MeController, () => {

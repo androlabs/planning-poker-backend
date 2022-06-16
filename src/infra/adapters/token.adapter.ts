@@ -1,10 +1,19 @@
-import { env } from '@main/config/env';
+import {
+  Decrypter,
+  Encrypter,
+  EncrypterVerify,
+} from '@domain/interfaces/protocols/cryptography.protocol';
 import jwt from 'jsonwebtoken';
 
-export class TokenAdapter {
+export class TokenAdapter implements Decrypter, Encrypter, EncrypterVerify {
+  constructor(
+    private readonly secret: string,
+    private readonly expirationToken: string,
+  ) {}
+
   async encode(content: Record<string, string>): Promise<string> {
-    return jwt.sign(content, env.secrets.jwt, {
-      expiresIn: env.secrets.expirationToken,
+    return jwt.sign(content, this.secret, {
+      expiresIn: this.expirationToken,
     });
   }
 
@@ -13,14 +22,6 @@ export class TokenAdapter {
   }
 
   async verify(token: string): Promise<boolean> {
-    try {
-      return jwt.verify(token, env.secrets.jwt) !== null;
-    } catch {
-      throw new Error('Invalid token');
-    }
+    return jwt.verify(token, this.secret) !== null;
   }
 }
-
-export const makeTokenAdapter = (): TokenAdapter => {
-  return new TokenAdapter();
-};
