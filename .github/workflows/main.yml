@@ -11,9 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install modules
-        run: npm install
+        run: yarn
       - name: Run tests
-        run: npm run tests
+        run: yarn tests
   build:
     runs-on: ubuntu-latest
     steps:
