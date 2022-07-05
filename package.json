@@ -4,7 +4,6 @@
   "description": "API REST for planning poker",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm run build",
     "start": "node dist/main/index.js",
     "dev": "nodemon src/main/index.ts",
     "build": "rimraf dist && tsc -p tsconfig.json",
