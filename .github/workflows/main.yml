@@ -5,6 +5,14 @@ on:
     branches:
       - "main"
 
+# env:
+#   DOMAIN: "http://localhost"
+#   PORT: "3000"
+#   NODE_ENV: "development"
+#   JWT_SECRET: "abc"
+#   SALTS_ROUNDS: "10"
+#   SECRET_INVITES: "skywalker"
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -21,6 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
+        if: success()
         uses: actions/checkout@v2
 
       - name: Login to Docker Hub
