@@ -12,16 +12,19 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["16.15.0"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install
         run: "npm install --save --legacy-peer-deps"
       - name: Run tests
-        run: "npm run test"
+        run: "npm run test:coverage"
 
   build:
-    needs: test
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
