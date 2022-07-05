@@ -9,21 +9,16 @@ on:
     branches:
       - main
 
-# env:
-#   DOMAIN: "http://localhost"
-#   PORT: "3000"
-#   NODE_ENV: "development"
-#   JWT_SECRET: "abc"
-#   SALTS_ROUNDS: "10"
-#   SECRET_INVITES: "skywalker"
-
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Run Jest
-        uses: stefanoeb/jest-action@1.0.4
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install
+        run: "npm run install"
+      - name: Run tests
+        run: "npm run tests"
 
   build:
     needs: test
