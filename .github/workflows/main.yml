@@ -18,7 +18,7 @@ jobs:
       - name: Install
         run: "npm install --save --legacy-peer-deps"
       - name: Run tests
-        run: "npm run tests"
+        run: "npm run test"
 
   build:
     needs: test
