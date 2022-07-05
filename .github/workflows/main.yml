@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install
-        run: "npm run install"
+        run: "npm install"
       - name: Run tests
         run: "npm run tests"
 
