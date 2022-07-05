@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install
-        run: "npm install"
+        run: "npm install --save --legacy-peer-deps"
       - name: Run tests
         run: "npm run tests"
 
