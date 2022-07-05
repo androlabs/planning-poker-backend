@@ -30,6 +30,7 @@ jobs:
         uses: stefanoeb/jest-action@1.0.4
 
   build:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
