@@ -1,3 +1,5 @@
+[![ci](https://github.com/androlabs/planning-poker-backend/actions/workflows/main.yml/badge.svg)](https://github.com/androlabs/planning-poker-backend/actions/workflows/main.yml)
+
 # Road map building
 
 ## Requirements
