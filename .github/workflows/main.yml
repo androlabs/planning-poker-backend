@@ -8,16 +8,15 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.15.0]
-      fail-fast: false
     steps:
-      - uses: actions/checkout@v2
-      - name: Install modules
-        run: npm install
-      - name: Run tests
-        run: npm run tests
+      # - uses: actions/checkout@v2
+      # - name: Install modules
+      #   run: npm install
+      # - name: Run tests
+      #   run: npm run tests
+      - name: Run Jest
+        uses: stefanoeb/jest-action@1.0.4
+
   build:
     runs-on: ubuntu-latest
     steps:
