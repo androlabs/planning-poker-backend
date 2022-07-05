@@ -37,7 +37,7 @@ jobs:
         run: "npm run test:coverage"
 
   build:
-    needs: [test]
+    needs: [lint, test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
