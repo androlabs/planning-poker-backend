@@ -66,7 +66,7 @@ export class MongodbAdapter<T> {
     await this.openConnect();
 
     const Document = this.getInstance();
-    await Document.updateOne(filter, data);
+    await Document.updateOne(filter, data as Record<string, unknown>);
 
     await this.closeConnection();
 
